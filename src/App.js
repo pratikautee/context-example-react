@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
+import logo from "./logo.svg";
+import "./App.css";
+import Header from "./Header";
+import MainContent from "./MainContent";
+import { useState } from "react";
+import { ThemeContext } from "./ThemeContext";
 function App() {
+  let [theme, setTheme] = useState({
+    text: "white",
+    bg: "dark",
+    accent: "danger",
+    isLightTheme: false,
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <Header />
+        <MainContent />
+      </ThemeContext.Provider>
+    </>
   );
 }
 
